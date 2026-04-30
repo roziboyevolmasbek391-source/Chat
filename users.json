@@ -1,0 +1,32 @@
+{
+  "olmas": {
+    "password": "$2b$10$wElrmi/78OxzoSF0EO0y7OaZRHQQWlV7aMi1Od5WT2kE2tJBZCFPO"
+  },
+  "tolmas": {
+    "password": "$2b$10$s6jaWOrGVjqPRUf6wflMiOs8R1goGNCw5dWdDqS9mAqotCGD.7Im2"
+  },
+  "tester1": {
+    "password": "$2b$10$sbgdl5bv9C4Dyiq2Sv7WzuBSRX2jZnDTD6XVA5OCT4BdtO1770.Ke"
+  },
+  "alice": {
+    "password": "$2b$10$QK6fNm8t7DJfviwTvpTVD.oBEBbW12ZksK5rMMvPw2RdZXQT8CoDy"
+  },
+  "asdf": {
+    "password": "$2b$10$1pOD9nImCkgFurUS0xTvm.BmPalF4fxD1Wl1xCa7IhDUwRN8UWkf2"
+  },
+  "olmass": {
+    "password": "$2b$10$0Q2njygSzYZg/AHY6YLRjurYpg8HYEL8sZxkwoWnlu.0/4lf7EEbG"
+  },
+  "olmasssss": {
+    "password": "$2b$10$Q/N7pI1sJ2/jMQclqWyqHucZtGw3m.g7WCg8u4RYog5AEDZCLxo06"
+  },
+  "sdafa": {
+    "password": "$2b$10$4iPabuLP1frBsOUzsIcSm.UV3soJ9RQ6NG6052Ra31EHPpmDuGuK6"
+  },
+  "oll": {
+    "password": "$2b$10$wOMQeKDdo4cjAKX3rLFo/OF0ZjPlFgpSGdwSagkxQ/CNHPomT83iK"
+  },
+  "ssss": {
+    "password": "$2b$10$l9GHDcU1k.w90GNuEgVoRe8Idz448q9N9Xn6YXIMV9yo5e02E6skO"
+  }
+}
