@@ -1,5 +1,7 @@
 sessionStorage.removeItem("user")
 document.getElementById("loginForm").reset()
+document.getElementById("username").value = ""
+document.getElementById("password").value = ""
 
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault()

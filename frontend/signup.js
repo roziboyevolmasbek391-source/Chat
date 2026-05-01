@@ -1,5 +1,7 @@
 sessionStorage.removeItem("user")
 document.getElementById("registerForm").reset()
+document.getElementById("username").value = ""
+document.getElementById("password").value = ""
 
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
   e.preventDefault()
