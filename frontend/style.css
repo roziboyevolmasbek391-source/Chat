@@ -3,16 +3,29 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  user-select: none;
 }
 
 *::selection {
-  background: rgba(100, 200, 255, 0.3);
-  color: #fff;
+  background: rgba(100, 200, 255, 0.5) !important;
+  color: #fff !important;
 }
 
 *::-moz-selection {
-  background: rgba(100, 200, 255, 0.3);
-  color: #fff;
+  background: rgba(100, 200, 255, 0.5) !important;
+  color: #fff !important;
+}
+
+input::selection,
+input::-moz-selection,
+textarea::selection,
+textarea::-moz-selection {
+  background: rgba(100, 200, 255, 0.5) !important;
+  color: #fff !important;
+}
+
+button, input, textarea {
+  user-select: text;
 }
 
 html, body {
