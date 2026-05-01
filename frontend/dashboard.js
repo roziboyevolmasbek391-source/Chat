@@ -6,28 +6,40 @@ if (!user) {
 
 document.getElementById("username").textContent = user.username
 
-const socket = io(window.location.origin)
-
-socket.emit("join", user.username)
-
 const chatBox = document.getElementById("chatBox")
 const form = document.getElementById("chatForm")
 const input = document.getElementById("messageInput")
 
-socket.on("chatHistory", (msgs) => {
-  msgs.forEach(m => addMessage(m))
-})
+async function loadMessages() {
+  try {
+    const res = await fetch("/api/messages")
+    const messages = await res.json()
+    chatBox.innerHTML = ""
+    messages.forEach(m => addMessage(m))
+    chatBox.scrollTop = chatBox.scrollHeight
+  } catch (err) {
+    console.error("Error loading messages:", err)
+  }
+}
 
-socket.on("message", (msg) => {
-  addMessage(msg)
-})
-
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault()
 
-  if (input.value.trim()) {
-    socket.emit("sendMessage", input.value)
-    input.value = ""
+  if (!input.value.trim()) return
+
+  try {
+    const res = await fetch("/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: user.username, text: input.value })
+    })
+
+    if (res.ok) {
+      input.value = ""
+      loadMessages()
+    }
+  } catch (err) {
+    console.error("Error sending message:", err)
   }
 })
 
@@ -38,6 +50,9 @@ function addMessage(msg) {
   chatBox.appendChild(div)
   chatBox.scrollTop = chatBox.scrollHeight
 }
+
+loadMessages()
+setInterval(loadMessages, 1000)
 
 document.getElementById("logout").onclick = () => {
   sessionStorage.removeItem("user")
