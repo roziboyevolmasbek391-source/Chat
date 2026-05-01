@@ -1,9 +1,16 @@
 import express from "express"
 import cors from "cors"
 import bcrypt from "bcrypt"
+import { createServer } from "http"
+import { Server } from "socket.io"
 import { readFile, writeFile } from "node:fs/promises"
 
 const app = express()
+const server = createServer(app)
+
+const io = new Server(server, {
+  cors: { origin: "*" }
+})
 
 const PORT = process.env.PORT || 3000
 
@@ -67,28 +74,45 @@ app.post("/login", async (req, res) => {
   res.json({ ok: true, username })
 })
 
-// ===== CHAT HISTORY =====
+// ===== SOCKET CHAT =====
 let messages = []
 
-app.get("/api/messages", (req, res) => {
-  res.json(messages)
+io.on("connection", (socket) => {
+
+  socket.on("join", (username) => {
+    socket.username = username
+
+    socket.emit("chatHistory", messages)
+
+    socket.broadcast.emit("message", {
+      username: "System",
+      text: `${username} joined`
+    })
+  })
+
+  socket.on("sendMessage", (text) => {
+    const msg = {
+      username: socket.username,
+      text
+    }
+
+    messages.push(msg)
+
+    if (messages.length > 100) messages.shift()
+
+    io.emit("message", msg)
+  })
+
+  socket.on("disconnect", () => {
+    if (socket.username) {
+      io.emit("message", {
+        username: "System",
+        text: `${socket.username} left`
+      })
+    }
+  })
 })
 
-app.post("/api/messages", (req, res) => {
-  const { username, text } = req.body
-
-  if (!username || !text) {
-    return res.status(400).json({ message: "required" })
-  }
-
-  const msg = { username, text, timestamp: new Date().toISOString() }
-  messages.push(msg)
-
-  if (messages.length > 100) messages.shift()
-
-  res.json({ ok: true })
-})
-
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server running on http://localhost:" + PORT)
 })
