@@ -6,7 +6,7 @@ if (!user) {
 
 document.getElementById("username").textContent = user.username
 
-const socket = io("http://localhost:3000")
+const socket = io(window.location.origin)
 
 socket.emit("join", user.username)
 
