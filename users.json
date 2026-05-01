@@ -31,5 +31,8 @@
   },
   "ss": {
     "password": "$2b$10$uuKoJT6//0fb8SkYFQAg3eBkrKEPwQbyQPJ7XKql/fxIZ7nshoXKi"
+  },
+  "testuser123": {
+    "password": "$2b$10$b3MkKcO0vR/xw61zUgk9vOVO5QP4iNjQMF2XtuCW7vKKVUY1Z1Vky"
   }
 }
