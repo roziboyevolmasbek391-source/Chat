@@ -1,3 +1,6 @@
+sessionStorage.removeItem("user")
+document.getElementById("registerForm").reset()
+
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
   e.preventDefault()
 
