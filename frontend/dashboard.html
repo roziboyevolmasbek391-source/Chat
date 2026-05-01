@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <div class="header-card">
+    <h2 id="username"></h2>
+    <button id="logout">Logout</button>
+  </div>
+
+  <div class="chat-card">
+
+    <div id="chatBox"></div>
+
+    <form id="chatForm">
+      <input id="messageInput" placeholder="message...">
+      <button>Send</button>
+    </form>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
